@@ -1,43 +1,36 @@
-# QnA Chatbot Using Drive Link
+# Comprehensive Documentation for RAG Pipeline
 
 ## Overview
-This project is a QnA Chatbot that utilizes Google Drive for storing and retrieving information. It allows users to ask questions, and the chatbot responds with answers derived from the content stored in Drive.
+This document provides detailed insights into the RAG (Retrieve and Generate) pipeline architecture, focusing on the underlying components and strategies utilized.
 
-## Features
-- **Natural Language Processing:** Understands user questions and provides relevant answers.
-- **Integration with Google Drive:** Easily access and manage documents and data stored in Google Drive.
-- **User-friendly Interface:** Simple and intuitive interface for interacting with the chatbot.
-- **Customizable Responses:** Ability to tailor the bot's responses based on user needs.
+## RAG Pipeline Architecture
+The RAG pipeline consists of two main components: the retriever and the generator. The retriever is responsible for fetching relevant documents from a vector store, while the generator produces a coherent response based on the retrieved documents and the user's query.
 
-## Installation
-To install the project, follow these steps:
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/QnA-Chatbot-useing-Drive-Link.git
-   ```
-2. Navigate into the cloned directory:
-   ```bash
-   cd QnA-Chatbot-useing-Drive-Link
-   ```
-3. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## FAISS Vector Store
+FAISS (Facebook AI Similarity Search) is utilized as the vector store for efficient similarity search. It allows for:
+- High-speed search of vectors in high dimensional space.
+- Efficient indexing to manage large datasets of embeddings.
 
-## Setup
-1. Make sure to have a Google Drive account.
-2. Create a service account in the Google Cloud Console and download the credentials JSON file.
-3. Share the necessary documents in your Google Drive with the service account email to allow access.
-4. Update your `config.json` with the path to your credentials JSON file and the IDs of the documents you want to access.
+## Text Chunking Strategy
+To improve retrieval efficiency and relevance, the text chunking strategy segments large documents into smaller, manageable chunks. The criteria for chunking include:
+- Setting an optimal chunk size that balances context and performance (e.g., 200-300 tokens).
+- Ensuring chunks retain semantic coherence.
 
-## Usage
-1. Run the chatbot application:
-   ```bash
-   python chatbot.py
-   ```
-2. Open the web browser and navigate to `http://localhost:5000`.
-3. Start asking questions in the provided input field.
-4. The chatbot will respond based on the content available in your Google Drive documents.
+## Embedding Models
+Various embedding models can be utilized in the RAG architecture, including:
+- BERT, for sentence embeddings.
+- Sentence Transformers, for generating embeddings that capture semantic similarity.
+- OpenAI's models like Ada or Curie for rich text representation.
+
+## K Values
+Within the retrieval process, the value of 'k' refers to the number of nearest neighbors retrieved from the vector store. Common practices include:
+- Experimenting with different values of k (e.g., k=5, k=10) to optimize performance based on the dataset characteristics.
+
+## Technical Learnings
+Several technical insights can be drawn from implementing the RAG pipeline:
+- Balancing retriever and generator performance is crucial for overall system efficacy.
+- Model choice impacts both retrieval quality and generation coherence.
+- Continuous tuning of hyperparameters such as 'k' values is essential for optimal outcomes.
 
 ## Conclusion
-This QnA Chatbot provides an efficient way to retrieve information seamlessly from Google Drive, enhancing user interactions and productivity.
+The RAG pipeline architecture leverages advanced techniques in NLP to deliver robust conversational AI capabilities.
